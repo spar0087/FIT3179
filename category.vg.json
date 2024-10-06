@@ -1,0 +1,104 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Exports and Imports in Malaysia by category (2023)" },
+    "data": {
+      "url": "https://raw.githubusercontent.com/spar0087/FIT3179/refs/heads/main/category.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {"fold": ["export", "import"], "as": ["Type", "Value"]},
+      {
+        "filter": "(TradeType == 'both') || (TradeType != 'both' && datum.Type == TradeType)"
+      }
+    ],
+    "params": [
+      {
+        "name": "TradeType",
+        "value": "export",
+        "bind": {
+          "input": "select",
+          "options": ["export", "import", "both"],
+          "labels": ["Export", "Import", "All"],
+          "name": "Trade Type: "
+        }
+      }
+    ],
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "x": {
+            "field": "Malaysia Exports By Category",
+            "type": "nominal",
+            "axis": {"title": "Category"}
+          },
+          "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "scale": {"type": "log"},
+            "axis": {
+              "title": "Value (USD ($))",
+              "format": "s",
+              "tickCount": 6,
+              "grid": false
+            }
+          },
+          "size": {
+            "field": "Value",
+            "type": "quantitative",
+            "scale": {"range": [100, 2000]},
+            "legend": {"title": "Value (USD ($))"}
+          },
+          "color": {
+            "field": "Type",
+            "type": "nominal",
+            "scale": {"domain": ["export", "import"], "range": ["#1f77b4", "#d62728"]}
+          },
+          "tooltip": [
+            {"field": "Malaysia Exports By Category", "title": "Category"},
+            {"field": "Value", "title": "Value (USD ($))", "format": "s"}
+          ]
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "(TradeType == 'export' && datum['Malaysia Exports By Category'] == 'Animal, vegetable fats and oils, cleavage products') || (TradeType == 'import' && datum['Malaysia Exports By Category'] == 'Vehicles other than railway, tramway')"
+          }
+        ],
+        "mark": {"type": "text", "align": "left", "dx": 5},
+        "encoding": {
+          "x": {
+            "field": "Malaysia Exports By Category",
+            "type": "nominal"
+          },
+          "y": {
+            "field": "Value",
+            "type": "quantitative",
+            "scale": {"type": "log"}
+          },
+          "text": {
+            "condition": {
+              "test": "TradeType == 'export' && datum['Malaysia Exports By Category'] == 'Animal, vegetable fats and oils, cleavage products' || TradeType == 'import' && datum['Malaysia Exports By Category'] == 'Vehicles other than railway, tramway'",
+              "field": "Malaysia Exports By Category"
+            },
+            "value": ""
+          },
+          "color": {
+            "field": "Type",
+            "type": "nominal",
+            "scale": {"domain": ["export", "import"], "range": ["#1f77b4", "#d62728"]}
+          }
+        }
+      }
+    ],
+    "config": {
+      "axisY": {
+        "grid": true,
+        "gridDash": [2, 2],
+        "gridOpacity": 0.5
+      }
+    },
+    "width": 1200,
+    "height": 600
+} 
