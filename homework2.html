@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vega Visualization</title>
+    <style>
+        /* Style for the title */
+        h1 {
+            font-family: serif; /* Set font to serif */
+            text-align: center; /* Center the title */
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+</head>
+<body>
+
+    <!-- Title -->
+    <h1>Exports and Imports in Malaysia 2023</h1>
+
+    <!-- First visualization -->
+    <div id="bar_chart"></div>
+
+    <!-- Second visualization -->
+    <div id="timeline_chart"></div>
+
+    <script>
+        var vg_1 = "category.vg.json";
+        var vg_2 = "timeline.vg.json";
+
+        // Embed the first chart
+        vegaEmbed("#bar_chart", vg_1).then(function(result) {
+            // Access the Vega view instance(https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        // Embed the second chart
+        vegaEmbed("#timeline_chart", vg_2).then(function(result) {
+            // Access the Vega view instance(https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+
+</body>
+</html>
