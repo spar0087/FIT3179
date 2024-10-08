@@ -1,4 +1,4 @@
-﻿Country,Value (M),Value
+﻿Country,Value (M),Import
 China,$56.71B,56710000000
 Singapore,$31.53B,31530000000
 United States of America,$19.53B,19530000000
@@ -52,12 +52,12 @@ Chile,$302.22M,302220000
 Bahrain,$280.91M,280910000
 Finland,$271.67M,271670000
 Cameroon,$270.28M,270280000
-Czech Republic,$235.58M,235580000
+Czechia,$235.58M,235580000
 Myanmar,$231.45M,231450000
 Norway,$230.45M,230450000
 Egypt,$228.21M,228210000
 Ghana,$226.36M,226360000
-Republic of the Congo,$192.41M,192410000
+Dem. Rep. Congo,$192.41M,192410000
 Peru,$182.91M,182910000
 Papua New Guinea,$176.22M,176220000
 Hungary,$152.97M,152970000
@@ -129,7 +129,7 @@ Senegal,$2.93M,2930000
 Djibouti,$2.47M,2470000
 Moldova,$2.42M,2420000
 Jamaica,$2.38M,2380000
-Central African Republic,$2.37M,2370000
+Central African Rep.,$2.37M,2370000
 Bolivia,$2.06M,2060000
 Barbados,$2.01M,2010000
 Vanuatu,$1.99M,1990000
@@ -174,7 +174,7 @@ San Marino,$70.11K,70110
 Dominica,$50.61K,50610
 Samoa,$41.78K,41780
 Andorra,$35.26K,35260
-South Sudan,$21.09K,21090
+S. Sudan,$21.09K,21090
 Tonga,$17.23K,17230
 Bhutan,$17.07K,17070
 Somalia,$6.24K,6240
@@ -199,4 +199,3 @@ Eritrea,$5.23K,5230
 Aruba,$15.46K,15460
 Israel,$827.65K,827650
 North Korea,$3.68K,3680
-,,
