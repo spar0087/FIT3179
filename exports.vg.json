@@ -60,7 +60,7 @@
         ]
       },
       "legend": {
-        "title": "",
+        "title": "Value per Person (USD)",
         "orient": "right",
         "format": "~s"
       }
