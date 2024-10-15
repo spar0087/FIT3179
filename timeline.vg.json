@@ -66,6 +66,6 @@
       {"field": "value", "type": "quantitative", "title": "Value (in million USD)"}
     ]
   },
-  "width": 650,
+  "width": 600,
   "height": 450
 }
