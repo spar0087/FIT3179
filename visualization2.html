@@ -12,16 +12,71 @@
             margin: 20px 0; /* Add some margin for spacing */
         }
 
+        /* Style for the description */
+        p.description {
+            font-family: sans-serif; /* Use a different font for description */
+            text-align: center; /* Center the description */
+            margin: 0 0 20px 0; /* Margin below the description */
+            font-size: 16px; /* Set the font size */
+            color: #555; /* Set a slightly lighter color */
+            max-width: 900px; /* Limit the width of the description */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Style for the horizontal line */
+        hr {
+            border: none; /* Remove default border */
+            height: 2px; /* Height of the line */
+            background-color: #ccc; /* Color of the line */
+            margin: 20px 0; /* Margin above and below the line */
+        }
+
         /* Flex container for side-by-side charts */
         .flex-container {
             display: flex;
-            justify-content: space-around; /* Space between charts */
-            margin-bottom: 20px; /* Add spacing below the top charts */
+            justify-content: space-between; /* Space between charts */
+            align-items: flex-start; /* Align charts to the top */
+            margin-bottom: 20px; /* Add spacing between rows */
+            flex-wrap: wrap; /* Allow wrapping to next row if screen is small */
         }
 
         /* Style for each visualization */
         .chart-container {
-            width: 45%; /* Adjust width as needed */
+            flex: 1 1 45%; /* Adjust width and allow charts to take up available space */
+            max-width: 48%; /* Maximum width for larger screens */
+            margin: 10px; /* Add margin for space around charts */
+        }
+
+        /* Make sure the visualizations adjust on smaller screens */
+        @media (max-width: 800px) {
+            .chart-container {
+                flex: 1 1 100%; /* Full width for small screens */
+                max-width: 100%;
+            }
+        }
+
+        /* Add spacing between visualizations */
+        #bar_chart, #timeline_chart {
+            margin-top: 20px; /* Space from previous row */
+        }
+
+        /* Style for the data source link */
+        p.data-source {
+            font-family: sans-serif; /* Use a different font for data source */
+            text-align: center; /* Center the data source text */
+            margin: 20px 0; /* Margin above and below */
+            font-size: 14px; /* Set the font size */
+            color: #555; /* Set a slightly lighter color */
+        }
+
+        p.data-source a {
+            color: #1f77b4; /* Color for the link */
+            text-decoration: none; /* Remove underline from link */
+        }
+
+        p.data-source a:hover {
+            text-decoration: underline; /* Underline on hover */
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
@@ -33,7 +88,16 @@
     <!-- Title -->
     <h1>Exports and Imports in Malaysia 2023</h1>
 
-    <!-- Flex container for exports and imports visualizations -->
+    <!-- Description below the title -->
+    <p class="description">
+        This interactive dashboard provides a comprehensive overview of Malaysia’s trade performance in 2023. 
+        It focuses on key trade metrics: exports and imports and offers detailed insights into trade categories and geographic regions.
+    </p>
+
+    <!-- Horizontal line for separation -->
+    <hr>
+
+    <!-- Flex container for visualizations -->
     <div class="flex-container">
         <!-- First visualization: Exports -->
         <div id="exports_chart" class="chart-container"></div>
@@ -42,17 +106,30 @@
         <div id="imports_chart" class="chart-container"></div>
     </div>
 
-    <!-- Third visualization: Category (bar) chart -->
-    <div id="bar_chart"></div>
+    <!-- Flex container for the next set of visualizations -->
+    <div class="flex-container">
+        <!-- Third visualization: Category (bubble) chart -->
+        <div id="bar_chart" class="chart-container"></div>
 
-    <!-- Fourth visualization: Timeline chart -->
-    <div id="timeline_chart"></div>
+        <!-- Fourth visualization: Timeline chart -->
+        <div id="timeline_chart" class="chart-container"></div>
+    </div>
+
+    <!-- Data source link -->
+    <p class="data-source">
+        All data was extracted from <a href="https://tradingeconomics.com/malaysia/imports-by-category#:~:text=%C2%A0%C2%A0Money-,Trade,-Balance%20Of%20Trade" target="_blank">TRADING ECONOMICS</a>.
+    </p>
+
+
+    <!-- Author and published date -->
+    <p class="author">Author: Se Eun Park</p>
+    <p class="date">Published Date: October 15, 2024</p>
 
     <script>
         var vg_1 = "exports.vg.json";   // Exports visualization
         var vg_2 = "imports.vg.json";   // Imports visualization
-        var vg_3 = "category.vg.json";  // Category chart (bar)
-        var vg_4 = "https://raw.githubusercontent.com/spar0087/FIT3179/refs/heads/main/timeline.vg.json";  // Timeline chart
+        var vg_3 = "category.vg.json";  // Category chart (bubble)
+        var vg_4 = "timeline.vg.json";  // Timeline chart
 
         // Embed the Exports chart
         vegaEmbed("#exports_chart", vg_1).then(function(result) {
@@ -64,7 +141,7 @@
             // Access the Vega view instance as result.view
         }).catch(console.error);
 
-        // Embed the Category (bar) chart
+        // Embed the Category (bubble) chart
         vegaEmbed("#bar_chart", vg_3).then(function(result) {
             // Access the Vega view instance as result.view
         }).catch(console.error);
