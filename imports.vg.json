@@ -1,7 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Malaysia Imports By Country 2023",
-  "width": 800,
+  "title": {
+    "text": "Import Value By Country",
+    "font": "serif",          
+    "fontWeight": "bold",    
+    "fontSize": 20,            
+    "dy": -10,                 
+    "anchor": "middle",
+    "subtitle": "This visualization illustrates import values by country in 2023 on a per capita basis."  
+  },
+  "width": 650,
   "height": 400,
   "projection": {"type": "equalEarth"},
   "data": {
@@ -44,22 +52,22 @@
       "field": "NormalizedValue",
       "type": "quantitative",
       "scale": {
-        "domain": [0, 150],  
+        "domain": [0, 300],  
         "range": [
-            "#f0f921", "#f8d140", "#f89b59", "#e66c64", "#d24b66", 
-            "#b5376e", "#933272", "#722c74", "#542374", "#381974",
-            "#2a1771", "#231869", "#1b1c60", "#141f58", "#101e4f", 
-            "#0d1a48", "#0b173f", "#091437", "#070f2e", "#050a24"]
+          "#fde0e0", "#f8c2c2", "#f4a3a3", "#ef8585", "#eb6666", "#e74747", "#e32828", 
+          "#cf2424", "#ba2020", "#a61c1c", "#921818", "#7e1414", "#6a1010", "#560c0c", 
+          "#420808", "#2d0404", "#190000", "#150000", "#110000", "#0d0000"
+        ]        
       },
       "legend": {
-        "title": "Import Value per Person (USD)",
+        "title": "Value per person (USD)",
         "orient": "right",
         "format": "~s"
       }
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "NormalizedValue", "type": "quantitative", "title": "Import Value per Person", "format": "~s"}
+      {"field": "NormalizedValue", "type": "quantitative", "title": "Value per Person", "format": "~s"}
     ]
   }
 }
