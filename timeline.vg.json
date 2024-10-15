@@ -1,56 +1,71 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": { "text": "Exports and Imports in Malaysia in a decade (2013-2023)" },
-    "data": {
-      "url": "https://raw.githubusercontent.com/spar0087/FIT3179/refs/heads/main/timeline.csv",
-      "format": {
-        "type": "csv"
-      }
-    },
-    "params": [
-      {
-        "name": "yearFilter",
-        "value": 2023,
-        "bind": {
-          "input": "select",
-          "options": [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
-          "name": "Select Year: "
-        }
-      }
-    ],
-    "transform": [
-      {
-        "filter": "datum.year == yearFilter"
-      },
-      {
-        "fold": ["export", "import"],
-        "as": ["category", "value"]
-      }
-    ],
-    "mark": "line",
-    "encoding": {
-      "x": {
-        "field": "month",
-        "type": "ordinal",
-        "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        "title": "Month"
-      },
-      "y": {
-        "field": "value",
-        "type": "quantitative",
-        "title": "USD (in million)"
-      },
-      "color": {
-        "field": "category",
-        "type": "nominal",
-        "title": "Category",
-        "scale": {
-          "domain": ["export", "import"],
-          "range": ["#1f77b4", "#d62728"]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": { 
+    "text": "Exports and Imports in a decade (2013-2023)",
+    "font": "serif",          
+    "fontWeight": "bold",    
+    "fontSize": 20,            
+    "dy": -10,                 
+    "anchor": "middle",
+    "subtitle": "The chart provides a clear comparison of trade trend between 2013 and 2023."          
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/spar0087/FIT3179/refs/heads/main/timeline.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "yearFilter",
+      "value": 2023,
+      "bind": {
+        "input": "select",
+        "options": [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+        "name": "Select Year: "
       }
     }
+  ],
+  "transform": [
+    {
+      "filter": "datum.year == yearFilter"
     },
-      "width": 700,
-      "height": 300
-  }
-  
+    {
+      "fold": ["export", "import"],
+      "as": ["category", "value"]
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "month",
+      "type": "ordinal",
+      "sort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "title": "Month",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "USD (in million)"
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {
+        "domain": ["export", "import"],
+        "range": ["#1f77b4", "#d62728"]
+      }
+    },
+    "tooltip": [
+      {"field": "month", "type": "ordinal", "title": "Month"},
+      {"field": "category", "type": "nominal", "title": "Category"},
+      {"field": "value", "type": "quantitative", "title": "Value (in million USD)"}
+    ]
+  },
+  "width": 650,
+  "height": 450
+}
